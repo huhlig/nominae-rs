@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Totro",""]]});
+initSidebarItems({"struct":[["Totro","The Totro struct generates names using a reimplementation of the `Totro Fantasy Random Name Generator` algorithm created by David A. Wheeler."]]});

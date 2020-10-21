@@ -149,6 +149,26 @@
 <span id="148">148</span>
 <span id="149">149</span>
 <span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// Copyright 2020 Hans W. Uhlig. All Rights Reserved.</span>
@@ -187,6 +207,26 @@
 <span class="doccomment">/// 7 all-in-word</span>
 <span class="kw">const</span> <span class="ident">AIW</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">BOW</span> <span class="op">|</span> <span class="ident">MOW</span> <span class="op">|</span> <span class="ident">EOW</span>;
 
+<span class="doccomment">/// The Totro struct generates names using a reimplementation of the `Totro Fantasy Random Name Generator` algorithm</span>
+<span class="doccomment">/// created by [David A. Wheeler](https://dwheeler.com/totro.html).</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```rust</span>
+<span class="doccomment">/// use nominae::Totro;</span>
+<span class="doccomment">/// use rand::SeedableRng;</span>
+<span class="doccomment">/// use rand::rngs::SmallRng;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// fn main() {</span>
+<span class="doccomment">///     let mut rng = SmallRng::seed_from_u64(0);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     println!(&quot;{}&quot;, Totro::generate(2, 5, &amp;mut rng));</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Name Generation Steps</span>
+<span class="doccomment">/// 1. Randomly determine syllabic length between min and max (or use fixed length if min==max).</span>
+<span class="doccomment">/// 2. Randomly determine if first Syllable is Vowel or not</span>
+<span class="doccomment">/// 3. Alternately select syllable from vowel and consonant table randomly until length is reached filtering out any syllables that cannot be placed at position (beginning, middle, or end).</span>
+<span class="doccomment">///</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Totro</span>;
 
 <span class="kw">impl</span> <span class="ident">Totro</span> {
