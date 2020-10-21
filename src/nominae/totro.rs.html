@@ -134,6 +134,21 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// Copyright 2020 Hans W. Uhlig. All Rights Reserved.</span>
@@ -176,7 +191,13 @@
 
 <span class="kw">impl</span> <span class="ident">Totro</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">generate</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Rng</span><span class="op">&gt;</span>(<span class="ident">min</span>: <span class="ident">u8</span>, <span class="ident">max</span>: <span class="ident">u8</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">&lt;</span> <span class="ident">max</span> { <span class="ident">rng</span>.<span class="ident">gen_range</span>(<span class="ident">min</span>, <span class="ident">max</span>) } <span class="kw">else</span> { <span class="ident">min</span> } <span class="kw">as</span> <span class="ident">usize</span>;
+        <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">&lt;</span> <span class="ident">max</span> {
+            <span class="ident">rng</span>.<span class="ident">gen_range</span>(<span class="ident">min</span>, <span class="ident">max</span>)
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">==</span> <span class="ident">max</span> {
+            <span class="ident">min</span>
+        } <span class="kw">else</span> {
+            <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;min must be less than or equal to max: {} &lt;= {}&quot;</span>, <span class="ident">min</span>, <span class="ident">max</span>);
+        } <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">with_capacity</span>(<span class="ident">length</span> <span class="op">*</span> <span class="number">2</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vowel</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">gen</span>();
         <span class="kw">for</span> <span class="ident">idx</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">length</span> {
@@ -261,13 +282,22 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Totro</span>;
+    <span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">SeedableRng</span>;
+    <span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">rngs</span>::<span class="ident">SmallRng</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">it_works</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">rand</span>::<span class="ident">thread_rng</span>();
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">4</span>..<span class="number">10</span> {
-            <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;3..{} - {}&quot;</span>, <span class="ident">i</span>, <span class="ident">Totro</span>::<span class="ident">generate</span>(<span class="number">3</span>, <span class="ident">i</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>));
+    <span class="kw">fn</span> <span class="ident">test_normal</span>() {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">SmallRng</span>::<span class="ident">seed_from_u64</span>(<span class="number">0</span>);
+        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">2</span>..<span class="number">10</span> {
+            <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;3..{} - {}&quot;</span>, <span class="ident">i</span>, <span class="ident">Totro</span>::<span class="ident">generate</span>(<span class="number">2</span>, <span class="ident">i</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>));
         }
+    }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="attribute">#[<span class="ident">should_panic</span>]</span>
+    <span class="kw">fn</span> <span class="ident">test_panic</span>() {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">SmallRng</span>::<span class="ident">seed_from_u64</span>(<span class="number">0</span>);
+        <span class="ident">Totro</span>::<span class="ident">generate</span>(<span class="number">5</span>, <span class="number">3</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
     }
 }</pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "nominae";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
