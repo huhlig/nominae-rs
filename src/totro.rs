@@ -39,7 +39,13 @@ pub struct Totro;
 
 impl Totro {
     pub fn generate<T: Rng>(min: u8, max: u8, rng: &mut T) -> String {
-        let length = if min < max { rng.gen_range(min, max) } else { min } as usize;
+        let length = if min < max {
+            rng.gen_range(min, max)
+        } else if min == max {
+            min
+        } else {
+            panic!("min must be less than or equal to max: {} <= {}", min, max);
+        } as usize;
         let mut output = String::with_capacity(length * 2);
         let mut vowel = rng.gen();
         for idx in 0..length {
@@ -124,12 +130,21 @@ const VOWELS: [(&str, u8); 83] = [
 #[cfg(test)]
 mod tests {
     use super::Totro;
+    use rand::SeedableRng;
+    use rand::rngs::SmallRng;
 
     #[test]
-    fn it_works() {
-        let mut rng = rand::thread_rng();
-        for i in 4..10 {
-            println!("3..{} - {}", i, Totro::generate(3, i, &mut rng));
+    fn test_normal() {
+        let mut rng = SmallRng::seed_from_u64(0);
+        for i in 2..10 {
+            println!("3..{} - {}", i, Totro::generate(2, i, &mut rng));
         }
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_panic() {
+        let mut rng = SmallRng::seed_from_u64(0);
+        Totro::generate(5, 3, &mut rng);
     }
 }

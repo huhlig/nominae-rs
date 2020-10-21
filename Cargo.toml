@@ -5,5 +5,6 @@ authors = ["Hans W. Uhlig <huhlig@gmail.com>"]
 edition = "2018"
 description = "Name Generation Library"
 
-[dependencies]
-rand = "0.7"
+[dependencies.rand]
+version = "0.7"
+features = ["small_rng"]
