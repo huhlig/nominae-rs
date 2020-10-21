@@ -15,6 +15,10 @@
 //
 
 //! Nominae Name Generation Library
+//!
+//! Name Generators
+//! - Totro Fantasy Name Generator
+//!
 
 mod totro;
 

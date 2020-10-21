@@ -35,6 +35,26 @@ const MEW: u8 = MOW | EOW;
 /// 7 all-in-word
 const AIW: u8 = BOW | MOW | EOW;
 
+/// The Totro struct generates names using a reimplementation of the `Totro Fantasy Random Name Generator` algorithm
+/// created by [David A. Wheeler](https://dwheeler.com/totro.html).
+///
+/// ```rust
+/// use nominae::Totro;
+/// use rand::SeedableRng;
+/// use rand::rngs::SmallRng;
+///
+/// fn main() {
+///     let mut rng = SmallRng::seed_from_u64(0);
+///
+///     println!("{}", Totro::generate(2, 5, &mut rng));
+/// }
+/// ```
+///
+/// Name Generation Steps
+/// 1. Randomly determine syllabic length between min and max (or use fixed length if min==max).
+/// 2. Randomly determine if first Syllable is Vowel or not
+/// 3. Alternately select syllable from vowel and consonant table randomly until length is reached filtering out any syllables that cannot be placed at position (beginning, middle, or end).
+///
 pub struct Totro;
 
 impl Totro {
