@@ -1,0 +1,9 @@
+[package]
+name = "nominae"
+version = "0.1.0"
+authors = ["Hans W. Uhlig <huhlig@gmail.com>"]
+edition = "2018"
+description = "Name Generation Library"
+
+[dependencies]
+rand = "0.7"
