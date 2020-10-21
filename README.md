@@ -1,9 +1,8 @@
 # Nominae Name Generation Library
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.org/huhlig/nominae-rs.svg?branch=master)](https://travis-ci.org/huhlig/nominae-rs)
-[![Coverage Status](https://coveralls.io/repos/github/huhlig/nominae-rs/badge.svg?branch=master)](https://coveralls.io/github/huhlig/nominae-rs?branch=master)
-
+[![Actions Status](https://github.com/huhlig/nominae-rs/workflows/Rust/badge.svg)](https://github.com/huhlig/nominae-rs/actions)
+[![Actions Status](https://github.com/huhlig/nominae-rs/workflows/Docs/badge.svg)](https://github.com/huhlig/nominae-rs/actions)
 ([API Docs])
 
 > A Simple Name Generation Library

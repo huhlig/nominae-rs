@@ -1,4 +1,4 @@
-name: Deploy API Documentation
+name: Docs
 
 on:
   push:
