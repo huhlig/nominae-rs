@@ -1,11 +1,12 @@
-# Nominae Name Generation Library
+# Procedural Generation Library
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Actions Status](https://github.com/huhlig/nominae-rs/workflows/Rust/badge.svg)](https://github.com/huhlig/nominae-rs/actions)
 [![Actions Status](https://github.com/huhlig/nominae-rs/workflows/Docs/badge.svg)](https://github.com/huhlig/nominae-rs/actions)
+
 ([API Docs])
 
-> A Simple Name Generation Library
+> A Procedural Generation Library in Rust
 
 ## License
 

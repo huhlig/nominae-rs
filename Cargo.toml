@@ -1,10 +1,10 @@
 [package]
 name = "nominae"
+edition = "2018"
 version = "0.1.0"
 authors = ["Hans W. Uhlig <huhlig@gmail.com>"]
-edition = "2018"
-description = "Name Generation Library"
+description = "English Name Generation Library"
 
 [dependencies.rand]
-version = "0.7"
+version = "0.8"
 features = ["small_rng"]

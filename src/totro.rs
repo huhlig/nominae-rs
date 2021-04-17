@@ -60,7 +60,7 @@ pub struct Totro;
 impl Totro {
     pub fn generate<T: Rng>(min: u8, max: u8, rng: &mut T) -> String {
         let length = if min < max {
-            rng.gen_range(min, max)
+            rng.gen_range(min..max)
         } else if min == max {
             min
         } else {
